@@ -5,19 +5,20 @@
 
 function concatena(stringa1, stringa2) {
   if (stringa1.length < 2 || stringa2.length < 3) {
-    console.log("la tringa è troppo corta.");
+    // qui verifico se le stringhe che sto specificando sono abbastanza lunghe
+    console.log("la tringa è troppo corta."); // nel caso non lo siano verrà stampato questo
     return;
   }
 
-  let primaParte = stringa1.substring(0, 2);
+  let primaParte = stringa1.substring(0, 2); // con substring prende dalla lettera 0 alla lettera 2 della prima stringa
 
-  let secondaParte = stringa2.substring(stringa2.length - 3);
+  let secondaParte = stringa2.substring(stringa2.length - 3); // con substring e all'interno length - 3 prenderà partendo dal fondo 3 lettere
 
-  let risultato = primaParte + secondaParte;
+  let risultato = primaParte + secondaParte; // qui uniamo le due stringhe per formare una nuova stringa con le prime due lettere della prima stringa e le ultime 3 della secondo stringa
 
-  risultato = risultato.toUpperCase();
+  risultato = risultato.toUpperCase(); // qui stiamo dicendo di far diventare il risultato tutto in maiuscolo
 
-  console.log(risultato);
+  console.log(risultato); // e come risultato abbiamo "ALOMO"
 }
 concatena("Aldo", "Giacomo");
 
@@ -26,10 +27,16 @@ concatena("Aldo", "Giacomo");
 */
 
 function randomArray() {
-  let arrayCasuale = [];
-  for (let index = 0; index < 10; index++) {
-    let numeroCasuale = Math.floor(Math.random() * 101);
-    arrayCasuale.push(numeroCasuale);
+  let arrayCasuale = []; // qui stiamo creando un array vuoto
+  for (
+    let index = 0;
+    index < 10;
+    index++ // qui stiamo dicendo all'indice di fermarsi quando arriveremo a meno di 10 ovvero 9
+  ) {
+    let numeroCasuale = Math.floor(Math.random() * 101); // qui stiamo dicendo che il numero casuale è uguale a math.random che genera un numero fra 0 e 1 ma che non sarà mai uno il
+    //---------------------------------------------------- il valore massimo sarà 0.999 quindi mai 1 e il risultato lo moltiplicheremo per 101 cosi da avere un valore fra 0.999 a 100.999
+    //---------------------------------------------------- e con mathfloor lui trasformera i numeri decipani in interi per difetto quindi anche 100.999 sarà 100
+    arrayCasuale.push(numeroCasuale); // qui andiamo a pushare i numeri all'interno dell'array fino a che non arriviamo a 10 elementi
   }
   return arrayCasuale;
 }
@@ -41,46 +48,85 @@ console.log(randomArray());
 
 */
 
-function filtraNumeriPari(arrayNumeri) {
-  const numeriPari = arrayNumeri.filter(function (numero) {
-    return numero % 2 === 0;
+function filtraNumeriPari(arrayNumeriEs3) {
+  const numeriPari = arrayNumeriEs3.filter(function (
+    numero // il filter è un nuovo array con non modifica quello originale // ---------------------------------------------------------- e solo se gli elementi per cui la funzione di callback ritorna true saranno in clusi nel nuovo array
+  ) {
+    return numero % 2 === 0; // qui verifico se il numero è pari
   });
   return numeriPari;
 }
 
-const arrayDiNumeri = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-const numeriPari = filtraNumeriPari(arrayDiNumeri);
+const arrayDiNumeriEs3 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const numeriPari = filtraNumeriPari(arrayDiNumeriEs3);
 console.log(numeriPari);
 
 /* ESERCIZIO 4 (forEach)
   Scrivi una funzione per sommare i numeri contenuti in un array
 */
 
-function sommaArrayNumeri(arrayNumeri) {
-  let somma = 0;
+function sommaArrayNumeri(arrayNumeriEs4) {
+  let somma = 0; // qui stiamo dando come valore alla somma iniziale 0
 
-  arrayNumeri.forEach(function (numero) {
-    somma += numero;
+  arrayNumeriEs4.forEach(function (
+    numero // a differenza di map e filter foreach non creà un nuovo array ma esegue soltanto il compito e lo eseguira per ogni numero
+  ) {
+    somma += numero; // qui stiamo sommando i numeri prendendoli uno per uno
   });
   return somma;
 }
 
-const arrayDiNumeri2 = [1, 2, 3, 4, 5];
-const sommaTotale = sommaArrayNumeri(arrayDiNumeri2);
-console.log(sommaTotale);
+const arrayDiNumeriEs4 = [5, 7, 2, 4, 9];
+const sommaTotaleEs4 = sommaArrayNumeri(arrayDiNumeriEs4);
+console.log(sommaTotaleEs4);
 
 /* ESERCIZIO 5 (reduce)
   Scrivi una funzione per sommare i numeri contenuti in un array
 */
 
+function sommaArrayNumeri(arrayNumeriEs5) {
+  const somma = arrayNumeriEs5.reduce((acc, numero) => acc + numero); // qui reduce ha il compito di ridurre l'array in un singolo elemento, acc a come valore 0 aggiungo il numero a acc
+  // --------------------------------------------------------------------- e per ogni nuovo numero aggiorneraà acc affiungendoci il numero
+  // --------------------------------------------------------------------- 0 è l'initial value ovvero il valore iniziale
+  return somma;
+}
+
+// const add = function(a, b) {return a + b;};sarebbe come scrivere const acc = (a, b) => a + b;
+
+const arrayDiNumeriEs5 = [3, 7, 4, 2, 8];
+const sommaTotaleEs5 = sommaArrayNumeri(arrayDiNumeriEs5);
+console.log(sommaTotaleEs5);
+
 /* ESERCIZIO 6 (map)
   Scrivi una funzione che, dato un array di soli numeri e un numero n come parametri, ritorni un secondo array con tutti i valori del precedente incrementati di n
 */
+
+function incrementaArrayNumeri(arrayNumeriEs6, n) {
+  const arrayIncrementato = arrayNumeriEs6.map(function (
+    numero // il .map serve per creare un nuovo array e non modificare quello originale
+  ) {
+    return numero + n; // qui aggiungamo il numero ad n
+  });
+  return arrayIncrementato;
+}
+
+const arrayDiNumeriEs6 = [7, 3, 9, 6, 1];
+const n = 3;
+const arrayIncrementato = incrementaArrayNumeri(arrayDiNumeriEs6, n);
+console.log(arrayIncrementato);
 
 /* ESERCIZIO 7 (map)
   Scrivi una funzione che, dato un array di stringhe, ritorni un nuovo array contenente le lunghezze delle rispettive stringhe dell'array di partenza
   es.: ["EPICODE", "is", "great"] => [7, 2, 5]
 */
+
+function trovaLunghezza(arrayOfStrings) {
+  return arrayOfStrings.map((string) => string.length);
+}
+
+const words = ["EPICODE", "is", "great"];
+const lengths = getLengths(words);
+console.log(lengths);
 
 /* ESERCIZIO 8 (forEach o for)
   Scrivi una funzione per creare un array contenente tutti i valori DISPARI da 1 a 99.
