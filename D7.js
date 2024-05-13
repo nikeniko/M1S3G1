@@ -50,7 +50,8 @@ console.log(randomArray());
 
 function filtraNumeriPari(arrayNumeriEs3) {
   const numeriPari = arrayNumeriEs3.filter(function (
-    numero // il filter è un nuovo array con non modifica quello originale // ---------------------------------------------------------- e solo se gli elementi per cui la funzione di callback ritorna true saranno in clusi nel nuovo array
+    numero // il filter è un nuovo array con non modifica quello originale
+    // ---------------------------------------------------------- e solo se gli elementi per cui la funzione di callback ritorna true saranno in clusi nel nuovo array
   ) {
     return numero % 2 === 0; // qui verifico se il numero è pari
   });
@@ -85,7 +86,7 @@ console.log(sommaTotaleEs4);
 */
 
 function sommaArrayNumeri(arrayNumeriEs5) {
-  const somma = arrayNumeriEs5.reduce((acc, numero) => acc + numero); // qui reduce ha il compito di ridurre l'array in un singolo elemento, acc a come valore 0 aggiungo il numero a acc
+  const somma = arrayNumeriEs5.reduce((acc, numero) => acc + numero, 0); // qui reduce ha il compito di ridurre l'array in un singolo elemento, acc a come valore 0 aggiungo il numero a acc
   // --------------------------------------------------------------------- e per ogni nuovo numero aggiorneraà acc affiungendoci il numero
   // --------------------------------------------------------------------- 0 è l'initial value ovvero il valore iniziale
   return somma;
@@ -125,7 +126,7 @@ function trovaLunghezza(arrayOfStrings) {
 }
 
 const words = ["EPICODE", "is", "great"];
-const lengths = getLengths(words);
+const lengths = trovaLunghezza(words);
 console.log(lengths);
 
 /* ESERCIZIO 8 (forEach o for)
